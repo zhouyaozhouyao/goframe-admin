@@ -126,3 +126,18 @@ exit status 2
 2020-01-09 17:02:20.003 "/Users/zhouyao/web/GoProject/gadmin/router/router.go": CHMOD
 2020-01-09 17:02:21.296 "/Users/zhouyao/web/GoProject/gadmin/app/middleware/token/token.go": CHMOD
 2020-01-09 17:02:22.028 build running pid: 11104
+2020-01-09 17:05:26.042 "/Users/zhouyao/web/GoProject/gadmin/app/api/admin/login/login.go": CHMOD
+2020-01-09 17:05:26.042 "/Users/zhouyao/web/GoProject/gadmin/app/middleware/token/token.go": CHMOD
+2020-01-09 17:05:26.042 "/Users/zhouyao/web/GoProject/gadmin/app/model/users/users.go": CHMOD
+2020-01-09 17:05:26.042 "/Users/zhouyao/web/GoProject/gadmin/app/model/users/users_entity.go": CHMOD
+2020-01-09 17:05:26.042 "/Users/zhouyao/web/GoProject/gadmin/app/model/users/users_model.go": CHMOD
+2020-01-09 17:05:26.043 "/Users/zhouyao/web/GoProject/gadmin/boot/boot.go": CHMOD
+2020-01-09 17:05:26.043 "/Users/zhouyao/web/GoProject/gadmin/library/base/baseRouter.go": CHMOD
+2020-01-09 17:05:26.044 "/Users/zhouyao/web/GoProject/gadmin/library/helper/helper.go": CHMOD
+2020-01-09 17:05:26.044 "/Users/zhouyao/web/GoProject/gadmin/library/input/param.go": CHMOD
+2020-01-09 17:05:26.044 "/Users/zhouyao/web/GoProject/gadmin/library/redis/redis.go": CHMOD
+2020-01-09 17:05:26.044 "/Users/zhouyao/web/GoProject/gadmin/library/response/response.go": CHMOD
+2020-01-09 17:05:26.044 "/Users/zhouyao/web/GoProject/gadmin/main.go": CHMOD
+2020-01-09 17:05:26.044 "/Users/zhouyao/web/GoProject/gadmin/router/router.go": CHMOD
+2020-01-09 17:05:26.993 build: main.go
+2020-01-09 17:05:27.778 build running pid: 11307
