@@ -1,0 +1,32 @@
+# HTTP Server
+[server]
+	Address     = ":8199"
+	ServerRoot  = "public"
+	ServerAgent = "gf-app"
+	LogPath     = "/Users/zhouyao/web/GoProject/gadmin/logs/server"
+
+# Logger.
+[logger]
+    Path        = "/Users/zhouyao/web/GoProject/gadmin/logs/"
+    Level       = "all"
+    Stdout      = true
+
+# Template.
+[viewer]
+    Path        = "template"
+    DefaultFile = "index.html"
+    Delimiters  =  ["${", "}"]
+
+# Database.
+[database]
+    link  = "mysql:root:123456@tcp(127.0.0.1:3306)/goframe"
+    debug = true
+    # Database logger.
+    [database.logger]
+        Path   = "/Users/zhouyao/web/GoProject/gadmin/logs/sql"
+        Level  = "all"
+        Stdout = true
+
+# redis 连接
+[redis]
+    default = "127.0.0.1:6379,1"
