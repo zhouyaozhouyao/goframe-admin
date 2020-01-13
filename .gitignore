@@ -17,4 +17,4 @@ cbuild
 main
 .vscode
 go.sum
-/logs
+/logs/*

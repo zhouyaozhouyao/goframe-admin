@@ -31,9 +31,11 @@ import (
 )
 
 var (
+	// GfJWTMiddleware 全局中间件声明
 	GfJWTMiddleware *jwt.GfJWTMiddleware // 声明jwt包的全局变量
 )
 
+// SignRequest 登录参数校验
 type SignRequest struct {
 	Username string `v:required#账号不能为空 json:"username"`
 	Password string `v:required#密码不能为空 json:"password"`
@@ -117,6 +119,11 @@ func PostLogin(r *ghttp.Request, code int, token string, expire time.Time) {
 
 // RefreshResponse 刷新token信息
 func RefreshResponse(r *ghttp.Request, code int, token string, expire time.Time) {
+
+	var loginPrefix = g.Cfg("redis").Get("APP.LOGIN_PREFIX")
+	// 重新设置该用户的token信息
+	redis.Set(gconv.String(loginPrefix)+gconv.String(r.GetParam("uuid")), token)
+
 	base.Success(r, g.Map{"token": token, "expire": helper.TimeToString(expire)})
 }
 

@@ -11,6 +11,7 @@ package token
 import (
 	"gadmin/app/api/admin/login"
 	"gadmin/library/base"
+	"gadmin/library/e"
 	"gadmin/library/redis"
 
 	"github.com/gogf/gf/frame/g"
@@ -26,7 +27,7 @@ func Validator(r *ghttp.Request) {
 	var token = parseToken.Raw
 	var claims = gconv.Map(parseToken.Claims)
 	if !GetRedisToken(gconv.String(claims["uuid"]), token) {
-		base.Fail(r, 3001)
+		base.Fail(r, e.ErrorAuthCheckTokenFail)
 	}
 	r.Middleware.Next()
 }

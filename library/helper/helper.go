@@ -8,6 +8,8 @@
 package helper
 
 import (
+	"fmt"
+	"strings"
 	"time"
 
 	"github.com/gogf/gf/util/gconv"
@@ -38,7 +40,19 @@ func TimeToString(expire time.Time) string {
 	t, err := gtime.StrToTime(expire.Format(time.RFC3339))
 	if err != nil {
 		glog.Error("服务器内部错误", err)
+		return ""
 	}
 
 	return gconv.String(t)
+}
+
+// OrderByParam 把map的interface转换为字符串键值对
+func OrderByParam(param []map[string]interface{}) string {
+	var claims = param[0]
+	var orderBy string
+	for k, v := range claims {
+		orderBy += fmt.Sprintf("%s %s ,", k, v)
+	}
+	orderBy = strings.TrimRight(orderBy, ",")
+	return orderBy
 }

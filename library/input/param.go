@@ -12,6 +12,13 @@ import (
 	"github.com/gogf/gf/net/ghttp"
 )
 
+type ListRequest struct {
+	Page    int                    `json:"page"`    // 当前页
+	Limit   int                    `json:"limit"`   // 每页显示条数
+	Where   map[string]interface{} `json:"where"`   // 查询条件
+	OrderBy map[string]interface{} `json:"orderBy"` // 排序
+}
+
 // JSONToStruct 解析json参数并转换 pointer传指针地址
 func JSONToStruct(r *ghttp.Request, pointer interface{}) {
 	j, err := r.GetJson()
@@ -20,8 +27,12 @@ func JSONToStruct(r *ghttp.Request, pointer interface{}) {
 		return
 	}
 
+	if j == nil {
+		return
+	}
+
 	if err := j.ToStruct(pointer); err != nil {
-		base.Error(r, 3001)
+		base.Error(r, 3002)
 		return
 	}
 }
@@ -43,4 +54,11 @@ func StringToJSON(r *ghttp.Request, pointer interface{}) {
 		base.Error(r, 3003)
 		return
 	}
+}
+
+// ListParams 列表页参数接收处理
+func ListParams(r *ghttp.Request) ListRequest {
+	var request = ListRequest{}
+	JSONToStruct(r, &request)
+	return request
 }

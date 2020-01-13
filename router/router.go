@@ -2,6 +2,8 @@ package router
 
 import (
 	"gadmin/app/api/admin/login"
+	"gadmin/app/api/admin/rbac"
+	"gadmin/app/api/admin/user"
 	"gadmin/app/middleware/token"
 
 	"github.com/gogf/gf/frame/g"
@@ -11,6 +13,9 @@ import (
 func init() {
 	s := g.Server()
 
+	s.BindHandler("GET:/testRbac", rbac.TestRBAC)
+	s.BindHandler("POST:/test", rbac.Test)
+
 	s.Group("/v1", func(group *ghttp.RouterGroup) {
 		group.POST("/admin/loginSubmit", login.GfJWTMiddleware.LoginHandler)
 		group.Group("/admin", func(group *ghttp.RouterGroup) {
@@ -18,10 +23,10 @@ func init() {
 			group.Middleware(token.Validator)
 			// 刷新token令牌
 			group.GET("/refresh", login.GfJWTMiddleware.RefreshHandler)
-			// 测试token是否有效
-			group.GET("/user", func(r *ghttp.Request) {
-				r.Response.Write("看看TOKEN是否有效")
-			})
+
+			// 用户管理组
+			group.ALL("/user", new(user.Controller))
 		})
 	})
+
 }
