@@ -1,6 +1,8 @@
 package boot
 
 import (
+	"gadmin/app/middleware/inject"
+
 	"github.com/gogf/gf/frame/g"
 )
 
@@ -9,5 +11,5 @@ func init() {
 	g.Cfg("redis").SetFileName("redis.toml")
 
 	// 初始化权限配置加载
-	//_ = inject.LoadCasBinPolicyData()
+	_ = inject.LoadCasBinPolicyData()
 }

@@ -12,6 +12,7 @@ const (
 	Fail                    = 400   // 请求失败
 	Error                   = 500   // 服务器内部错误
 	Unauthorized            = 401   // 身份未授权
+	Forbidden               = 403   // 路由未授权
 	ErrorExist              = 10001 // 数据已存在
 	ErrorNotExist           = 10002 // 数据不存在
 	ErrorCreateFail         = 10003 // 数据创建失败

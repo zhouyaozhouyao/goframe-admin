@@ -1,7 +1,7 @@
 package role
 
-func GetRolesAll() error {
-	// 取出所有角色
-	return nil
+import "github.com/casbin/casbin/v2"
 
+type RBAC struct {
+	Enforcer *casbin.Enforcer `inject:""`
 }

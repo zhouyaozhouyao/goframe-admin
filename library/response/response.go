@@ -35,13 +35,13 @@ func Success(data interface{}) Resp {
 // Fail  失败
 func Fail(code int) Resp {
 	var msg = e.GetMsg(code)
-	return Resp{400, msg, []int{}}
+	return Resp{code, msg, []int{}}
 }
 
 // Error 错误
 func Error(code int) Resp {
 	var msg = e.GetMsg(code)
-	return Resp{500, gconv.String(msg), []int{}}
+	return Resp{code, gconv.String(msg), []int{}}
 }
 
 // FailParam 校验参数提示信息

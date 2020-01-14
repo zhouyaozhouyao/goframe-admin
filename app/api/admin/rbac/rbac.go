@@ -68,7 +68,7 @@ func Test(r *ghttp.Request) {
 	//	r.Exit()
 	//}
 
-	_, _ = enforcer.AddRoleForUser("admin1", "业务主管")
+	_, _ = enforcer.AddRoleForUser("admin", "业务主管")
 	_, _ = enforcer.AddPermissionForUser("业务主管", "/test", "POST")
 	g.Dump(enforcer.GetGroupingPolicy()) // a.Enforcer.GetGroupingPolicy()
 	sub := "admin"                       // the user that wants to access a resource.

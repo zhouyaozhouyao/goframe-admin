@@ -7,26 +7,60 @@
 
 package inject
 
-// Object CasBin 对象
-//type Object struct {
-//	Enforcer *casbin.Enforcer
-//}
-//
-//var Obj *Object
-//
-//func init() {
-//	var r *ghttp.Request
-//	var path = "config/rbac/rbac.conf"
-//	enforcer, err := casbin.NewEnforcer(path, false)
-//	if err != nil {
-//		base.Fail(r, 500)
-//	}
-//
-//	Obj = &Object{Enforcer: enforcer}
-//	return
-//}
+import (
+	"gadmin/app/model/rbac"
+	"gadmin/library/base"
+	"gadmin/library/e"
 
-//// LoadCasBinPolicyData 加载权限策略数据 包含角色权限、用户角色数据
-//func LoadCasBinPolicyData() error {
-//
-//}
+	"github.com/casbin/casbin/v2"
+	"github.com/facebookgo/inject"
+	"github.com/gogf/gf/net/ghttp"
+)
+
+// CasBinObj 注入对象
+type CasBinObj struct {
+	Common   *rbac.Common
+	Enforcer *casbin.Enforcer
+}
+
+// Obj CasBin 实例变量
+var Obj *CasBinObj
+
+// 初始化 CasBinRBAC 配置
+func init() {
+	i := new(inject.Graph)
+	var r *ghttp.Request
+	var path = "config/rbac/rbac.conf"
+
+	enforcer, err := casbin.NewEnforcer(path, false)
+	if err != nil {
+		base.Error(r, e.Error)
+	}
+	_ = i.Provide(&inject.Object{Value: enforcer})
+
+	common := new(rbac.Common)
+	_ = i.Provide(&inject.Object{Value: common})
+
+	if err := i.Populate(); err != nil {
+		base.Error(r, e.Error)
+	}
+
+	Obj = &CasBinObj{
+		Enforcer: enforcer,
+		Common:   common,
+	}
+	return
+}
+
+// LoadCasBinPolicyData 加载用户角色、角色权限等数据
+func LoadCasBinPolicyData() error {
+	m := Obj.Common
+
+	// 注入用户与角色信息
+	err := m.LoadPolicyData(1, "admin")
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

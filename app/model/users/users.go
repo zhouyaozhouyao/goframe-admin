@@ -3,8 +3,14 @@ package users
 import (
 	"gadmin/library/helper"
 
+	"github.com/casbin/casbin/v2"
+
 	"github.com/gogf/gf/os/glog"
 )
+
+type RBAC struct {
+	Enforcer *casbin.Enforcer `inject:""`
+}
 
 var (
 	entity *Entity

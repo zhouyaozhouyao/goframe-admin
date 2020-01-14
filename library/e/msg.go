@@ -12,6 +12,7 @@ var Message = map[int]string{
 	Fail:                    "请求失败",
 	Error:                   "服务器内部错误",
 	Unauthorized:            "身份未授权",
+	Forbidden:               "没有访问权限",
 	ErrorExist:              "数据已存在",
 	ErrorNotExist:           "数据不存在",
 	ErrorCreateFail:         "数据创建失败",
