@@ -17,24 +17,21 @@ func init() {
 		group.POST("/admin/loginSubmit", login.GfJWTMiddleware.LoginHandler)
 		group.Group("/admin", func(group *ghttp.RouterGroup) {
 			// 中间件检测token是否有效
-			group.Middleware(token.Validator)
+			group.Middleware(token.Validator, permission.CasBinMiddleware)
 			// 刷新token令牌
 			group.GET("/refresh", login.GfJWTMiddleware.RefreshHandler)
 
 			// 用户管理组
 			group.ALL("/user", new(user.Controller))
+
+			group.Middleware(permission.CasBinMiddleware)
+			group.GET("/menus", func(r *ghttp.Request) {
+				r.Response.Write("我是来测试")
+			})
+
+			group.GET("/test1", func(r *ghttp.Request) {
+				r.Response.Write("我是来测试")
+			})
 		})
 	})
-
-	s.Group("/api/v1", func(group *ghttp.RouterGroup) {
-		group.Middleware(permission.CasBinMiddleware)
-		group.GET("/menus", func(r *ghttp.Request) {
-			r.Response.Write("我是来测试")
-		})
-
-		group.GET("/test1", func(r *ghttp.Request) {
-			r.Response.Write("我是来测试")
-		})
-	})
-
 }

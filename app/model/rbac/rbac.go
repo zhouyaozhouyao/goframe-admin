@@ -64,5 +64,6 @@ func (a *Common) LoadPolicyData(id int, username string) error {
 		}
 		_, _ = a.Enforcer.AddPermissionForUser(gconv.String(v["role_name"]), gconv.String(v["path"]), gconv.String(v["method"]))
 	}
+
 	return nil
 }

@@ -12,20 +12,15 @@ import (
 	"gadmin/library/base"
 	"gadmin/library/e"
 
-	"github.com/gogf/gf/frame/g"
-
 	"github.com/gogf/gf/net/ghttp"
 )
 
 // CasBinMiddleware 检测当前用户是否具有访问权限
 func CasBinMiddleware(r *ghttp.Request) {
-	var username = "admin2"
-	g.Dump(r.RequestURI)
-	if ok, err := inject.Obj.Enforcer.Enforce(username, r.RequestURI, r.Method); err != nil {
+	if ok, err := inject.Obj.Enforcer.Enforce(r.GetParam("username"), r.RequestURI, r.Method); err != nil {
 		base.Error(r, e.Error)
 	} else if !ok {
 		base.Error(r, e.Forbidden)
 	}
-
 	r.Middleware.Next()
 }

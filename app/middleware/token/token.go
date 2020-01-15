@@ -26,6 +26,7 @@ func Validator(r *ghttp.Request) {
 	parseToken, _ := login.GfJWTMiddleware.ParseToken(r)
 	var token = parseToken.Raw
 	var claims = gconv.Map(parseToken.Claims)
+	r.SetParam("username", claims["username"])
 	if !GetRedisToken(gconv.String(claims["uuid"]), token) {
 		base.Fail(r, e.ErrorAuthCheckTokenFail)
 	}
