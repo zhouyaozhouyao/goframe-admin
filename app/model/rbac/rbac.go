@@ -18,10 +18,12 @@ import (
 	"github.com/casbin/casbin/v2"
 )
 
+// Common 定义全局对象
 type Common struct {
 	Enforcer *casbin.Enforcer `inject:""`
 }
 
+// LoadPolicyData 注入权限策略
 func (a *Common) LoadPolicyData(id int, username string) error {
 	// 查询用户、角色数据
 	userResult, err := users.Model.M.As("u").
@@ -38,12 +40,12 @@ func (a *Common) LoadPolicyData(id int, username string) error {
 	// 先清除掉已有的权限数据
 	_, _ = a.Enforcer.DeleteRolesForUser(username)
 
-	// 保存角色ID
-	var roleId []uint
+	// roleID 保存角色id切片
+	var roleID []uint
 
 	// 注册用户、角色 到CasBin配置中
 	for _, v := range userResult.List() {
-		roleId = append(roleId, gconv.Uint(v["role_id"]))
+		roleID = append(roleID, gconv.Uint(v["role_id"]))
 		_, _ = a.Enforcer.AddRoleForUser(gconv.String(v["username"]), gconv.String(v["name"]))
 	}
 
@@ -52,7 +54,7 @@ func (a *Common) LoadPolicyData(id int, username string) error {
 		InnerJoin("role_menu as rm", "r.id = rm.role_id").
 		LeftJoin("menu as m", "rm.menu_id = m.id").
 		Fields("r.name as role_name, m.name, m.path, m.method").
-		FindAll("r.id in (?)", roleId)
+		FindAll("r.id in (?)", roleID)
 
 	if err != nil {
 		glog.Error("查询角色与路由错错", err)

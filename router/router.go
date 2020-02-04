@@ -24,14 +24,6 @@ func init() {
 			// 用户管理组
 			group.ALL("/user", new(user.Controller))
 
-			group.Middleware(permission.CasBinMiddleware)
-			group.GET("/menus", func(r *ghttp.Request) {
-				r.Response.Write("我是来测试")
-			})
-
-			group.GET("/test1", func(r *ghttp.Request) {
-				r.Response.Write("我是来测试")
-			})
 		})
 	})
 }
