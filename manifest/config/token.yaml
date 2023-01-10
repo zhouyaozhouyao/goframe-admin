@@ -1,0 +1,9 @@
+gfToken:
+  ServerName: "YbcAdmin"
+  CacheModel: "redis"
+  CacheKey: "ybc_"
+  Timeout: 864000
+  MaxRefresh: 0
+  MultiLogin: false
+  EncryptKey: 32
+  ExcludePaths: []

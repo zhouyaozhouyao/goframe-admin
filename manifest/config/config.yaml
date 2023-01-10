@@ -1,0 +1,75 @@
+server:
+  address: ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+logger:
+  level: "error"
+  stdout: false
+  path: "./runtime/logs"
+  header: false
+  Flags: 44
+  exception:
+    path: "./runtime/logs/exception"
+    level: "error"
+    stdout: false
+    header: false
+    Flags: 44
+
+# database 配置
+database:
+  logger:
+    path: "./runtime/logs/sql"
+    level: "all"
+    stdout: true
+  default:
+    link: "mysql:ybc:YyeGPaZEHMkbtRRn@tcp(123.57.28.100:3306)/ybc"
+    debug: true
+
+# redis 配置
+redis:
+  # 单实例配置示例1
+  default:
+    address: 127.0.0.1:6379
+    db: 1
+
+# 后台配置
+admin:
+  cache:
+# 缓存类型
+    # 1. memory 内存缓存
+    # 2. redis redis缓存
+    model: "redis"
+    # 缓存时间
+    # 单位：秒
+    # 0 为永久缓存
+    time: 0
+    # 缓存前缀
+    prefix: "admin_"
+
+#casbin配置
+casbin:
+  modelFile: "./resource/casbin/rbac_model.conf"
+  policyFile: "./resource/casbin/rbac_policy.csv"
+
+# 阿里大鱼配置
+ali:
+  accessKey: "LTAI5tKJP73rYLUnvqMz2ugn"
+  secret: "9SjEEjGKroePkX3kgrJmFVjjZA4PST"
+# 微信配置
+wechat:
+  # 微信支付配置
+  payment: ""
+  # 微信小程序配置
+  mini_program:
+    default:
+      appid: "wx14d4dab220fcf0d1"
+      secret: "b7c09e0e35b1f714a890cec291b0640e"
+  # 微信公众号配置
+  official_account:
+    default:
+      appid: ""
+      secret: ""
+      token: ""
+      ase_key: ""
+

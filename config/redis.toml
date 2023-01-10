@@ -1,3 +1,0 @@
-# redis 配置
-[APP]
-    LOGIN_PREFIX = "app:login:uid_"

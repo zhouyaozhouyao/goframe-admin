@@ -1,12 +1,15 @@
 package main
 
 import (
-	_ "gadmin/boot"
-	_ "gadmin/router"
+	_ "api/internal/boot"
+	"api/internal/cmd"
+	_ "api/internal/packed"
 
-	"github.com/gogf/gf/frame/g"
+	"github.com/gogf/gf/v2/os/gctx"
+
+	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 )
 
 func main() {
-	g.Server().Run()
+	cmd.Main.Run(gctx.New())
 }

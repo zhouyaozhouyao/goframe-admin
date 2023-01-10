@@ -1,0 +1,18 @@
+# 工具相关配置
+gfcli:
+  build:
+    name: "go-ybc"
+    arch: "amd64"
+    system: "linux"
+    mod: ""
+    path: "bin"
+    cgo: 0
+
+  gen:
+    dao:
+      #      - link: "mysql:test_bxh:test_bxh123456@tcp(rm-2zepp10fs1v112633do.mysql.rds.aliyuncs.com:3306)/test_bxh_crm"
+      - link: "mysql:ybc:YyeGPaZEHMkbtRRn@tcp(123.57.28.100:3306)/ybc"
+        descriptionTag: true
+        noModelComment: true
+        removePrefix: "data_, log_, rel_"
+        jsonCase: "Snake"
