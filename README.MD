@@ -1,3 +1,30 @@
+# goframe-admin
+
+Goravel 是一个基础功能完善的、具有良好扩展能力的 Web 应用程序框架。 作为一个起始脚手架帮助 Golang 开发者快速构建自己的应用。
+
+# 主要功能
+
+- [x] Config
+- [x] Http
+- [x] Orm
+- [x] Logger
+- [x] Cache
+- [x] Queue
+- [x] Casbin
+- [x] WeChat
+- [x] AliSms
+- [x] Oss
+- [ ] Schedule
+- [ ] Event
+- [ ] Mail
+- [] Migrate
+
+# 感谢
+
+框架使用的是 `gofrmae/v2` 为基础进行开发
+Wechat 是参考 `PowerWeChat` 进行改版 方便自已持续集成
+
+
 # 接口文档
 
 gf run main.go 启动项目后访问：
@@ -8,18 +35,15 @@ http://127.0.0.1:8000/swagger/
 
 main分支使用目前goframe最新版V2.2开发实现
 
-如果你需要1.1X版本的项目，可以查看我另外的一个项目地址：
-https://github.com/wangzhongyang007/goframe-shop
-
 # 运行流程
 
 ## 1. 下载项目
 
-git clone https://github.com/wangzhongyang007/goframe-shop-v2
+git@github.com:zhouyaozhouyao/goframe-admin.git
 
 ## 2. 配置数据库
 
-把hack/shop.sql导入你的数据库中
+把resource/databases/admin.sql导入你的数据库中
 
 ## 3. 修改配置文件
 
@@ -29,7 +53,7 @@ git clone https://github.com/wangzhongyang007/goframe-shop-v2
 
 redis的密码可以不改，gtoken已经使用gcache模式，如果你需要使用redis，请配置配置文件中的redis
 
-七牛云的密码可以不改，不影响项目启动，如果你需要图片上传功能，请修改配置文件中qiniu相关的参数
+oss需要进行配置或上传改为本地文件，不影响项目启动，如果你需要图片上传功能，请修改配置文件中qiniu相关的参数
 
 ## 4. 启动项目
 
@@ -48,21 +72,11 @@ gf run main.go
 
 # 出现问题可以联系我
 
-## 我的知识星球
-
-https://wx.zsxq.com/dweb2/index/group/15528828844882
 
 ## 微信
 
-wangzhongyang1993
+zhouyao999
 
-## 我的博客
-
-https://juejin.cn/user/2189882892232029/posts
-
-## 我的公众号
-
-程序员升级打怪之旅
 
 # 交叉编译
 
@@ -76,16 +90,6 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 
 ```
 CGO_ENABLE=0 GOOS=windows GOARCH=amd64 go build
-```
-
-# 部署流程
-
-1. 本地提交git
-2. 远程服务器已经安装Go环境
-3. 执行部署脚本：
-
-```
-setup.sh
 ```
 
 # 热更新启动项目
