@@ -1,7 +1,7 @@
 # 工具相关配置
 gfcli:
   build:
-    name: "go-ybc"
+    name: "go-admin"
     arch: "amd64"
     system: "linux"
     mod: ""
@@ -11,7 +11,7 @@ gfcli:
   gen:
     dao:
       #      - link: "mysql:test_bxh:test_bxh123456@tcp(rm-2zepp10fs1v112633do.mysql.rds.aliyuncs.com:3306)/test_bxh_crm"
-      - link: "mysql:ybc:YyeGPaZEHMkbtRRn@tcp(123.57.28.100:3306)/ybc"
+      - link: "mysql:root:123456@tcp(127.0.0.1:3306)/admin"
         descriptionTag: true
         noModelComment: true
         removePrefix: "data_, log_, rel_"

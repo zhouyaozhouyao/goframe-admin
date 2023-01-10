@@ -23,7 +23,7 @@ database:
     level: "all"
     stdout: true
   default:
-    link: "mysql:ybc:YyeGPaZEHMkbtRRn@tcp(123.57.28.100:3306)/ybc"
+    link: "mysql:root:123456@tcp(127.0.0.1:3306)/admin"
     debug: true
 
 # redis 配置
@@ -36,7 +36,7 @@ redis:
 # 后台配置
 admin:
   cache:
-# 缓存类型
+    # 缓存类型
     # 1. memory 内存缓存
     # 2. redis redis缓存
     model: "redis"
@@ -54,8 +54,8 @@ casbin:
 
 # 阿里大鱼配置
 ali:
-  accessKey: "LTAI5tKJP73rYLUnvqMz2ugn"
-  secret: "9SjEEjGKroePkX3kgrJmFVjjZA4PST"
+  accessKey: "xxxxx"
+  secret: "xxxxxxx"
 # 微信配置
 wechat:
   # 微信支付配置
@@ -63,8 +63,8 @@ wechat:
   # 微信小程序配置
   mini_program:
     default:
-      appid: "wx14d4dab220fcf0d1"
-      secret: "b7c09e0e35b1f714a890cec291b0640e"
+      appid: "xxx"
+      secret: "xxxxx"
   # 微信公众号配置
   official_account:
     default:
@@ -72,4 +72,3 @@ wechat:
       secret: ""
       token: ""
       ase_key: ""
-
